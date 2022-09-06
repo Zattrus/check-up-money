@@ -14,7 +14,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3))
+    Future.delayed(Duration(seconds: 2))
         .then((_) => Navigator.of(context).pushReplacementNamed('/login'));
     FlutterNativeSplash.remove();
   }

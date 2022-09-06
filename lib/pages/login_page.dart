@@ -22,26 +22,26 @@ class _LoginPageState extends State<LoginPage> {
               Text(
                 'Login',
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
+                    color: Color(0xFFF2F3F3),
+                    fontSize: 35,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 60),
               TextField(
                 decoration: InputDecoration(
                     hintText: 'Email',
-                    fillColor: Colors.white,
+                    fillColor: Color(0xFFF2F3F3),
                     filled: true,
                     hintStyle: TextStyle(color: Colors.black),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.white))),
+                        borderSide: BorderSide(color: Color(0xFFF2F3F3)))),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 20),
               TextField(
                 decoration: InputDecoration(
                     hintText: 'Password',
-                    fillColor: Colors.white,
+                    fillColor: Color(0xFFF2F3F3),
                     filled: true,
                     hintStyle: TextStyle(color: Colors.black),
                     border: OutlineInputBorder(
@@ -57,17 +57,17 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {},
                     child: Text(
                       'Esqueci minha senha',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Color(0xFFF2F3F3)),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               ElevatedButton(
                   onPressed: () {},
                   child: Text('Login'),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: Color(0xFFF2F3F3),
                       foregroundColor: Color(0xFF229EAB),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)))),
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text(
                     'Não tem uma conta?',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Color(0xFFF2F3F3)),
                   ),
                   TextButton(
                     onPressed: () {},
