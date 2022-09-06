@@ -1,5 +1,6 @@
 import 'package:check_up_money/pages/login_page.dart';
 import 'package:check_up_money/pages/splash_pages.dart';
+import 'package:check_up_money/pages/inforesumo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/splash',
       routes: {
         '/splash': (_) => const SplashPage(),
-        '/login': (_) => const LoginPage()
+        '/login': (_) => const LoginPage(),
+        '/inforesumo': (_) => const InforesumoPage(),
       },
       home: LoginPage(),
     );

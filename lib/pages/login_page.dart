@@ -22,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
               Text(
                 'Login',
                 style: TextStyle(
+                    fontFamily: 'Roboto',
                     color: Color(0xFFF2F3F3),
                     fontSize: 35,
                     fontWeight: FontWeight.bold),
@@ -29,7 +30,12 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 60),
               TextField(
                 decoration: InputDecoration(
-                    hintText: 'Email',
+                    labelText: 'Email',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Roboto',
+                        color: Color(0xFF1C1B1F),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
                     fillColor: Color(0xFFF2F3F3),
                     filled: true,
                     hintStyle: TextStyle(color: Colors.black),
@@ -40,7 +46,12 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 20),
               TextField(
                 decoration: InputDecoration(
-                    hintText: 'Password',
+                    labelText: 'Password',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Roboto',
+                        color: Color(0xFF1C1B1F),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
                     fillColor: Color(0xFFF2F3F3),
                     filled: true,
                     hintStyle: TextStyle(color: Colors.black),
@@ -57,14 +68,20 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {},
                     child: Text(
                       'Esqueci minha senha',
-                      style: TextStyle(color: Color(0xFFF2F3F3)),
+                      style: TextStyle(
+                          color: Color(0xFFF2F3F3),
+                          fontSize: 15,
+                          fontFamily: 'Roboto'),
                     ),
                   ),
                 ],
               ),
               SizedBox(height: 10),
               ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // navegar para a proxima tela
+                    Navigator.of(context).pushReplacementNamed('/inforesumo');
+                  },
                   child: Text('Login'),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFF2F3F3),
@@ -77,13 +94,22 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text(
                     'Não tem uma conta?',
-                    style: TextStyle(color: Color(0xFFF2F3F3)),
+                    style: TextStyle(
+                        color: Color(0xFFF2F3F3),
+                        fontSize: 15,
+                        fontFamily: 'Roboto'),
                   ),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       'Cadastre-se',
-                      style: TextStyle(color: Colors.black.withOpacity(1)),
+                      style: TextStyle(
+                        color:
+                            Color.fromARGB(255, 238, 200, 149).withOpacity(1),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                      ),
                     ),
                   ),
                 ],
