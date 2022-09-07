@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 60),
-              TextField(
+              TextFormField(
                 decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                         borderSide: BorderSide(color: Color(0xFFF2F3F3)))),
               ),
               SizedBox(height: 20),
-              TextField(
+              TextFormField(
                 decoration: InputDecoration(
                     labelText: 'Password',
                     labelStyle: TextStyle(
