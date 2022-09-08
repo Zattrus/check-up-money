@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         '/login': (_) => const LoginPage(),
         '/inforesumo': (_) => const InforesumoPage(),
       },
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }
