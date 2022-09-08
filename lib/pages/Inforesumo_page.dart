@@ -21,7 +21,7 @@ class _InforesumoPageState extends State<InforesumoPage> {
                     color: Color(0xFFF2F3F3),
                     fontSize: 20,
                     fontFamily: 'Roboto-Bold')),
-            backgroundColor: Color(0xFFF1D4AF),
+            backgroundColor: const Color(0xFFF1D4AF),
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: 20.0),
@@ -54,22 +54,24 @@ class _InforesumoPageState extends State<InforesumoPage> {
             ),
             elevation: 4,
           ),
-          body: TabBarView(
-            children: [
-              buildPageDia('Dia'),
-              buildPageSemana('Semana'),
-              buildPageMes('Mês'),
-            ],
+          body: Scaffold(
+            body: TabBarView(
+              children: [
+                buildPageDia('Dia'),
+                buildPageSemana('Semana'),
+                buildPageMes('Mês'),
+              ],
+            ),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
+            backgroundColor: const Color(0xFFF1D4AF).withOpacity(0.8),
             child: const Icon(Icons.add),
-            backgroundColor: Color(0xFFF1D4AF).withOpacity(0.8),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterFloat,
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Color(0xFFF1D4AF),
+            backgroundColor: const Color(0xFFF1D4AF),
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
@@ -84,8 +86,8 @@ class _InforesumoPageState extends State<InforesumoPage> {
                 label: 'Perfil',
               ),
             ],
-            selectedItemColor: Color(0xFF229EAB),
-            unselectedItemColor: Color(0xFF000C14).withOpacity(0.5),
+            selectedItemColor: const Color(0xFF229EAB),
+            unselectedItemColor: const Color(0xFF000C14).withOpacity(0.5),
             onTap: (index) {
               switch (index) {
                 case 0:
@@ -102,229 +104,109 @@ class _InforesumoPageState extends State<InforesumoPage> {
           ),
         ),
       );
-}
 
 // dia
-Widget buildPageDia(String text) => Container(
-      color: Color(0xFF229EAB),
+  Widget buildPageDia(String text) {
+    return Container(
+      color: const Color(0xFF229EAB),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'Gastos',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'R\$ 0,00',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'Ganhos',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'R\$ 0,00',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'Saldo',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'R\$ 0,00',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.6,
+            child: Card(
+              color: const Color(0xFF229EAB).withOpacity(0.8),
+              child: Column(
+                children: [
+                  loadGrafico(),
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 150, top: 0),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  loadGrafico() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: 300,
+      child: const Card(
+        color: Color(0xFF229EAB),
+        child: Center(
+            // child: CircularProgressIndicator(
+            //   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            // ),
+            ),
+      ),
+    );
+  }
 
 // semana
-Widget buildPageSemana(String text) => Container(
-      color: Color(0xFF229EAB),
+  Widget buildPageSemana(String text) {
+    return Container(
+      color: const Color(0xFF229EAB),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'Gastos',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'R\$ 0,00',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'Ganhos',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'R\$ 0,00',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'Saldo',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'R\$ 0,00',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.6,
+            child: Card(
+              color: const Color(0xFF229EAB).withOpacity(0.8),
+              child: Column(
+                children: [
+                  loadGrafico(),
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 150, top: 0),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
+  }
 
 // mês
-Widget buildPageMes(String text) => Container(
-      color: Color(0xFF229EAB),
+  Widget buildPageMes(String text) {
+    return Container(
+      color: const Color(0xFF229EAB),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'Gastos',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'R\$ 1000,00',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'Ganhos',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'R\$ 0,00',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'Saldo',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              'R\$ 0,00',
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF000C14),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.6,
+            child: Card(
+              color: const Color(0xFF229EAB).withOpacity(0.8),
+              child: Column(
+                children: [
+                  loadGrafico(),
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 150, top: 0),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
+  }
+}
