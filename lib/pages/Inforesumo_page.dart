@@ -1,6 +1,8 @@
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class InforesumoPage extends StatefulWidget {
   const InforesumoPage({super.key});
@@ -105,6 +107,21 @@ class _InforesumoPageState extends State<InforesumoPage> {
         ),
       );
 
+  // loadGrafico() {
+  //   return SizedBox(
+  //     width: MediaQuery.of(context).size.width,
+  //     height: 300,
+  //     child: const Card(
+  //       color: Color(0xFF229EAB),
+  //       child: Center(
+  //           // child: CircularProgressIndicator(
+  //           //   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+  //           // ),
+  //           ),
+  //     ),
+  //   );
+  // }
+
 // dia
   Widget buildPageDia(String text) {
     return Container(
@@ -113,39 +130,18 @@ class _InforesumoPageState extends State<InforesumoPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            width: MediaQuery.of(context).size.width,
+            width: 550,
             height: MediaQuery.of(context).size.height * 0.6,
             child: Card(
               color: const Color(0xFF229EAB).withOpacity(0.8),
               child: Column(
-                children: [
-                  loadGrafico(),
-                  const Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 150, top: 0),
-                    ),
-                  ),
+                children: const [
+                  GraficoPizza(),
                 ],
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  loadGrafico() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: 300,
-      child: const Card(
-        color: Color(0xFF229EAB),
-        child: Center(
-            // child: CircularProgressIndicator(
-            //   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            // ),
-            ),
       ),
     );
   }
@@ -164,7 +160,7 @@ class _InforesumoPageState extends State<InforesumoPage> {
               color: const Color(0xFF229EAB).withOpacity(0.8),
               child: Column(
                 children: [
-                  loadGrafico(),
+                  // loadGrafico(),
                   const Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
@@ -194,7 +190,7 @@ class _InforesumoPageState extends State<InforesumoPage> {
               color: const Color(0xFF229EAB).withOpacity(0.8),
               child: Column(
                 children: [
-                  loadGrafico(),
+                  // loadGrafico(),
                   const Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
@@ -209,4 +205,60 @@ class _InforesumoPageState extends State<InforesumoPage> {
       ),
     );
   }
+}
+
+// criando um grafico de pizza
+// import 'package:flutter/material.dart';
+// import 'package:syncfusion_flutter_charts/charts.dart';
+
+class GraficoPizza extends StatefulWidget {
+  const GraficoPizza({Key? key}) : super(key: key);
+
+  @override
+  _GraficoPizzaState createState() => _GraficoPizzaState();
+}
+
+class _GraficoPizzaState extends State<GraficoPizza> {
+  late List<ChartData> _chartData;
+
+  @override
+  void initState() {
+    _chartData = getChartData();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SfCircularChart(
+      title: ChartTitle(text: 'Gastos por categoria'),
+      legend: Legend(isVisible: true),
+      series: <CircularSeries>[
+        DoughnutSeries<ChartData, String>(
+            dataSource: _chartData,
+            xValueMapper: (ChartData data, _) => data.x,
+            yValueMapper: (ChartData data, _) => data.y,
+            dataLabelSettings: const DataLabelSettings(isVisible: true))
+      ],
+    );
+  }
+
+  List<ChartData> getChartData() {
+    final List<ChartData> chartData = [
+      ChartData('Alimentação', 35),
+      ChartData('Transporte', 15),
+      ChartData('Lazer', 25),
+      ChartData('Saúde', 10),
+      ChartData('Educação', 15),
+      ChartData('Outros', 10),
+    ];
+    return chartData;
+  }
+}
+
+class ChartData {
+  ChartData(this.x, this.y, [this.text, this.pointColor]);
+  final String x;
+  final double y;
+  final String? text;
+  final Color? pointColor;
 }
