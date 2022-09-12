@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import 'inforesumo_page.dart';
+
 class InforesumoPage extends StatefulWidget {
   const InforesumoPage({super.key});
 
@@ -14,7 +16,7 @@ class InforesumoPage extends StatefulWidget {
 class _InforesumoPageState extends State<InforesumoPage> {
   @override
   Widget build(BuildContext context) => DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
@@ -44,13 +46,10 @@ class _InforesumoPageState extends State<InforesumoPage> {
                   color: Color(0xFF229EAB)),
               tabs: [
                 Tab(
-                  text: 'Dia',
+                  text: 'Resumo',
                 ),
                 Tab(
-                  text: 'Semana',
-                ),
-                Tab(
-                  text: 'Mês',
+                  text: 'Resumo Geral',
                 ),
               ],
             ),
@@ -59,9 +58,8 @@ class _InforesumoPageState extends State<InforesumoPage> {
           body: Scaffold(
             body: TabBarView(
               children: [
-                buildPageDia('Dia'),
-                buildPageSemana('Semana'),
-                buildPageMes('Mês'),
+                buildPageResumo('Resumo'),
+                buildPageResumoGeral('Resumo Geral'),
               ],
             ),
           ),
@@ -123,7 +121,7 @@ class _InforesumoPageState extends State<InforesumoPage> {
   // }
 
 // dia
-  Widget buildPageDia(String text) {
+  Widget buildPageResumo(String text) {
     return Container(
       color: const Color(0xFF229EAB),
       child: Column(
@@ -146,8 +144,8 @@ class _InforesumoPageState extends State<InforesumoPage> {
     );
   }
 
-// semana
-  Widget buildPageSemana(String text) {
+// Resumo geral
+  Widget buildPageResumoGeral(String text) {
     return Container(
       color: const Color(0xFF229EAB),
       child: Column(
@@ -159,44 +157,8 @@ class _InforesumoPageState extends State<InforesumoPage> {
             child: Card(
               color: const Color(0xFF229EAB).withOpacity(0.8),
               child: Column(
-                children: [
-                  // loadGrafico(),
-                  const Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 150, top: 0),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-// mês
-  Widget buildPageMes(String text) {
-    return Container(
-      color: const Color(0xFF229EAB),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.6,
-            child: Card(
-              color: const Color(0xFF229EAB).withOpacity(0.8),
-              child: Column(
-                children: [
-                  // loadGrafico(),
-                  const Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 150, top: 0),
-                    ),
-                  ),
+                children: const [
+                  GraficoGeral(),
                 ],
               ),
             ),
@@ -207,10 +169,7 @@ class _InforesumoPageState extends State<InforesumoPage> {
   }
 }
 
-// criando um grafico de pizza
-// import 'package:flutter/material.dart';
-// import 'package:syncfusion_flutter_charts/charts.dart';
-
+// Obtendo gastos do dia dia
 class GraficoPizza extends StatefulWidget {
   const GraficoPizza({Key? key}) : super(key: key);
 
@@ -230,7 +189,7 @@ class _GraficoPizzaState extends State<GraficoPizza> {
   @override
   Widget build(BuildContext context) {
     return SfCircularChart(
-      title: ChartTitle(text: 'Gastos por categoria'),
+      title: ChartTitle(text: 'Resumo'),
       legend: Legend(isVisible: true),
       series: <CircularSeries>[
         DoughnutSeries<ChartData, String>(
@@ -261,4 +220,56 @@ class ChartData {
   final double y;
   final String? text;
   final Color? pointColor;
+}
+
+// Resumo geral dos gastos
+class GraficoGeral extends StatefulWidget {
+  const GraficoGeral({Key? key}) : super(key: key);
+
+  @override
+  _GraficoGeralState createState() => _GraficoGeralState();
+}
+
+class _GraficoGeralState extends State<GraficoGeral> {
+  late List<ChartData> _chartData;
+
+  @override
+  void initState() {
+    _chartData = getChartData();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SfCartesianChart(
+      title: ChartTitle(text: 'Resumo Geral'),
+      legend: Legend(isVisible: true),
+      primaryXAxis: CategoryAxis(),
+      series: <ChartSeries>[
+        LineSeries<ChartData, String>(
+            dataSource: _chartData,
+            xValueMapper: (ChartData data, _) => data.x,
+            yValueMapper: (ChartData data, _) => data.y,
+            dataLabelSettings: const DataLabelSettings(isVisible: true))
+      ],
+    );
+  }
+
+  List<ChartData> getChartData() {
+    final List<ChartData> chartData = [
+      ChartData('Janeiro', 35),
+      ChartData('Fevereiro', 15),
+      ChartData('Março', 25),
+      ChartData('Abril', 10),
+      ChartData('Maio', 15),
+      ChartData('Junho', 10),
+      ChartData('Julho', 35),
+      ChartData('Agosto', 15),
+      ChartData('Setembro', 25),
+      ChartData('Outubro', 10),
+      ChartData('Novembro', 15),
+      ChartData('Dezembro', 10),
+    ];
+    return chartData;
+  }
 }
